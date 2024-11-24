@@ -17,6 +17,10 @@ import os
 import PIL.Image as Image
 from IPython.display import display
 
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+print(f"Using CUDA : {device}")
+print(torch.cuda.get_device_name(device))
+
 def train_model(model, criterion, optimizer, scheduler, n_epochs = 5):
     
     losses = []
@@ -24,7 +28,8 @@ def train_model(model, criterion, optimizer, scheduler, n_epochs = 5):
     test_accuracies = []
     # set the model to train mode initially
     model.train()
-    model=model.to('cuda')
+    # model=model.to('cuda')
+    model=model.to(device)
     for epoch in range(n_epochs):
         since = time.time()
         running_loss = 0.0
@@ -84,10 +89,6 @@ def eval_model(model):
         test_acc = 100.0 * correct / total
     print('Accuracy of the network on the test images: %0.2f %%' % (test_acc))
     return test_acc
-
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print(f"Using CUDA : {device}")
-print(torch.cuda.get_device_name(device))
 
 
 
