@@ -6,5 +6,9 @@
 
 **Author: Ngai_Lam Ho**
 
+** Data setup **
+Copy the training and testing data into the two directories:
+``` cars_train ``` and ```  cars_test ```
+
 ![](14LB.gif)
 
