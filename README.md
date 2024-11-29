@@ -12,3 +12,9 @@ Copy the training and testing data into the two directories:
 
 ![](14LB.gif)
 
+
+** Training of Model (Resnet50):
+```ipython3 Resnet50_train.ipynb ```
+
+** Running of API-service (Resnet50):
+```ipython3 Resnet50_predict.ipynb ```
