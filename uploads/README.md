@@ -1,0 +1,1 @@
+temporary durectory that contains images uploaded for classification

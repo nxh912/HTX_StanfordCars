@@ -19,8 +19,15 @@ Copy the training and testing data into the two directories:
 
 ** Running of API-service (Resnet50):
 1. (in a seprate terminal)
-1. Install FastAPI Library: ``` pip3 install fastapi ```
-1. Run the API Car model classification server: ``` fastapi dev  APIserver.py  ``` 
+1. Install FastAPI Library:
+  ``` pip3 install fastapi
+      pip3 install python-multipart
+  ```
+1. Run the API Car model classification server: ``` fastapi dev  APIserver.py  ```
+1. Test:
+  ```
+   curl -X POST "http://127.0.0.1:8000/upload/" -F "file=@./cars_test/cars_test/00386.jpg"
+  ```
 
 ** Testing with Swagger.API
 1. Go to URL: https://editor.swagger.io/
