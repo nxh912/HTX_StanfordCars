@@ -1,5 +1,6 @@
 #from typing import Union
 #from fastapi import FastAPI, Form, Path, File, UploadFile, HTTPException
+import pandas as pd
 import tensorflow as tf
 import torchvision.transforms as transforms
 from torchvision.models import resnet50, ResNet50_Weights
@@ -82,11 +83,37 @@ async def upload_image(file: UploadFile = File(...)):
     filename = f"{ UPLOAD_DIR }/{ file.filename }"
     print(f"# pred_model = img_classify( '{filename}' )")
 
-    pred_model = img_classify( filename)
-    
+    model_id = int( img_classify( filename))
+    #print(f"LINE L88 : pred_model : {model_id}")
+
+    #print(f"LINE89 model_id : {model_id}\n\n" )
+
+    #print(f"L91: model_id \n  {df_train[ df_train['train_num'] == model_id ] }")
+
+    pred_model = ""
+    result_table = df_train[ df_train['train_num'] == model_id ]
+    for date, row in result_table.T.iteritems():
+        pred_model = row['Cars']
+        break
+
     return JSONResponse(
         content={"filename": file.filename,
                  "predicted_model": pred_model}
     )
 
-load_model()
+def load_models():
+    df_train_labels = pd.read_csv('training_labels.csv',
+                                  dtype={'testing_num': 'Int32', 'Cars': str, 'Cars': str, 'Year': 'Int32'})
+
+    df_test_labels = pd.read_csv('testing_labels.csv',
+                                  dtype={'testing_num': int,
+                                         'Cars':        str,
+                                         'Make':        str,
+                                         'Year':        int})
+
+    print( df_train_labels.tail() )
+    print( df_test_labels.tail() )
+    return (df_train_labels, df_test_labels)
+
+df_train, df_test = load_models()
+
