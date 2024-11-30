@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Stanford Car Model
+  description: |-
+    https://github.com/nxh912/HTX_StanfordCars
+    
+  contact:
+    email: nxh912@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+
+servers:
+  - url: http://127.0.0.1:8000/
+tags:
+  - name: model
+    description: Car Model Classifier
+paths:
+  /upload:
+    post:
+      summary: Uploads a file.
+      requestBody:  # Use `requestBody` instead of `parameters` for file uploads
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+      responses:
+        '200':
+          description: Successful upload
+
+components:
+  schemas:
+    chat:
+      type: object
+      properties:
+        query:
+          type: string
+          description: query string to end to chatbot
+          example: Hello
+        model:
+          type: string
+          description: image encoded (BASE64)
+          example:  1111
+
+      xml:
+        name: order
+
+  requestBodies:
+    Pet:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/chat'
+
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/chat'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+
