@@ -14,7 +14,15 @@ Copy the training and testing data into the two directories:
 
 
 ** Training of Model (Resnet50):
-```ipython3 Resnet50_train.ipynb ```
+1. (in a seprate terminal)
+1. ```ipython3 Resnet50_train.ipynb ``` 
 
 ** Running of API-service (Resnet50):
-```ipython3 Resnet50_predict.ipynb ```
+1. (in a seprate terminal)
+1. Install FastAPI Library: ``` pip3 install fastapi ```
+1. Run the API Car model classification server: ``` fastapi dev  APIserver.py  ``` 
+
+** Testing with Swagger.API
+1. Go to URL: https://editor.swagger.io/
+1. Import the API definition file from ```swagger.yaml```
+1. Import image files for testing
