@@ -1,5 +1,13 @@
 # Car-Classification
 
+1. Language / Environment: ```Python 3.9 (Anaconda)```
+1. Library : ```Tensorflow-Keras```
+1. Pre-trained classifier : ```ResNet50```
+1. Jupyter notebook for training: ``` Resnet50_train.ipynb ```
+1. ``` Resnet50_train.ipynb ``` has differernt headers for ```data input```, ``` model building```
+1. Final trained model is written to file: ``` Rasnet50.pth ```
+1. Model can be used for prediction using an FastAPI webservice (```APIserver.py```)
+   
 **Goal**: Building a vehicle recognition predictive model using machine learning models (traditional and deep learning), and the goal of that model is to classify a car’s make and model based on an input image.
 
 **Raw data source**: https://www.kaggle.com/jessicali9530/stanford-cars-dataset
